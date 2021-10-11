@@ -1,4 +1,4 @@
-
+import java.io.IOException;
 
 public class StringCalc {
     public final String[] values;
@@ -10,17 +10,24 @@ public class StringCalc {
         this.values = values;
     }
 
-    public String getResult() {
+    public String getResult() throws IOException {
         String a = values[0];
         String b = values[1];
 
 
 
         switch (operator) {
-            case "+" -> result = plus (a,b);
-            case "-" -> result = minus(a,b);
-            case "*" -> result = multiplication(a,b);
-            case "/" -> result = division(a,b);
+
+            case "+" -> result = plus(a, b);
+            case "-" -> result = minus(a, b);
+            case "*" -> {result = multiplication(a, b);
+            if (Integer.parseInt(values[1]) > 10 || Integer.parseInt(values[1]) <= 0) {
+                throw new IOException("Число должно быть меньше или равно 10 и больше 0");
+            }}
+            case "/" -> {result = division(a,b);
+            if (Integer.parseInt(values[1]) > 10 || Integer.parseInt(values[1]) <= 0) {
+                throw new IOException("Число должно быть меньше или равно 10 и больше 0");
+            }}
         }
 
 
@@ -52,5 +59,5 @@ public class StringCalc {
         String[] ar = {a,b};
         return ar;
     }
-    public String calculate() { return getResult();}
+    public String calculate() throws IOException { return getResult();}
 }

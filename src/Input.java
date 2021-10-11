@@ -6,15 +6,15 @@ public class Input {
         Scanner sc = new Scanner(System.in);
         String result = sc.nextLine().replaceAll(" ", "");
         String[] values = Parser.getValues(result);
-
         if (values.length < 2) {
             throw new IOException("строка не является математической операцией");
         }
         if (values.length > 2) {
             throw new IOException("формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
         }
-//        if (Integer.parseInt(values[1]) > 10 || Integer.parseInt(values[1]) <=0) {
-//            throw new IOException("Число должно быть меньше или равно 10 и больше 0");
+        if (values[0].length() > 10 || values[1].length() > 10) {
+            throw new IOException("Вводимая строка не должна быть больше 10 символов");
+        }
     return result;
     }
 }
